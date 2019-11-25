@@ -1,0 +1,151 @@
+/* miniprogram/pages/analysis/analysis.wxss */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.analysis-result, .today-food, .today-calorie-total, .today-calorie-proportion,
+.today-nutrient-proportion {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.analysis-result-top, .today-food-top, .today-calorie-total-top,
+.today-calorie-proportion-top, .today-nutrient-proportion-top {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 0;
+}
+
+.analysis-result-title {
+  flex-grow: 1;
+  font-size: 36rpx;
+  font-weight: bolder;
+  text-align: center;
+  margin-left: 100rpx;
+}
+
+.calendar-text {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.calendar-img {
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.health-img {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10rpx;
+  background: #fff;
+  /* border: 1px solid #f2f2f2; */
+  overflow: hidden;
+  box-shadow: 5rpx 5rpx 15rpx 1rpx #e5e5e5;
+}
+
+.tr {
+  display: flex;
+}
+
+.tr~.tr {
+  border-top: 1px solid #f2f2f2;
+}
+
+.td {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+  font-size: 28rpx;
+  padding: 15rpx;
+}
+
+.td-1 {
+  width: 40%;
+  align-items: flex-start;
+}
+
+.td-2 {
+  width: 35%;
+  align-items: center;
+}
+
+.td-3 {
+  width: 25%;
+  align-items: flex-end;
+}
+
+/* .td.comment {
+  width: 100%;
+} */
+
+.analysis-result-middle .td-1 {
+  width: 25%;
+  background: #FFFF99;
+  align-items: center;
+}
+
+.analysis-result-middle .td-2 {
+  width: 75%;
+  align-items: center;
+}
+
+.today-food-middle .td-2 {
+  width: 55%;
+  align-items: flex-end;
+}
+
+.today-food-middle .tr.meal-name {
+  background: #f0f0f0;
+}
+
+.today-nutrient-proportion{
+  margin-bottom: 120rpx;
+}
+
+.share{
+  position: fixed;
+  height: 120rpx;
+  bottom: 0;
+  width: 100%;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color:#CC6600;
+  background: #FFFFCC;
+}
+
+.share button{
+  background: linear-gradient(to right, #FFFF00, #FF9900);
+  border-radius: 50rpx;
+  width: 40%;
+  color: white;
+  font-weight: 500;
+}

@@ -1,0 +1,7 @@
+<!--components/share.wxml-->
+<view class="share {{visible ? 'show' : ''}}">
+<view class="content">
+<canvas class="canvas" canvas-id="share">
+<view class="footer">
+<view class="save">保存到相册</view><view>关闭</view></view></canvas></view>
+</view>

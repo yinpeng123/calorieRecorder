@@ -1,0 +1,241 @@
+<!--miniprogram/pages/analysis/analysis.wxml-->
+<view class="container">
+  <view class="analysis-result">
+    <view class="analysis-result-top">
+      <!-- <image class="health-img" mode="scaleToFill" src="{{healthImg}}"></image> -->
+      <text class="analysis-result-title">营养分析结果</text>
+      <view class="calendar">
+        <image mode="widthFix" src="{{calendarImg}}" class="calendar-img"></image>
+        <text class="calendar-text text-title">27</text>
+      </view>
+    </view>
+    <view class="analysis-result-middle table">
+      <view class="tr">
+        <view class="td td-1 text-align-center">
+          <text>总热量</text>
+        </view>
+        <view class="td td-2">热量摄入严重不足
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td td-1 text-align-center">三餐热量比
+        </view>
+        <view class="td td-2">午餐热量比偏高，晚餐热量比偏低，要合理分配三餐热量哦
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td td-1 text-align-center">三大营养素占比
+        </view>
+        <view class="td td-2">蛋白质占比偏高，脂肪、碳水化合物占比偏低、要合理搭配营养哦
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td td-1 text-align-center">运动
+        </view>
+        <view class="td td-2">运动量过少，要合理安排运动时间哦
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td comment text-comment">注：本产品不适用于运动员、未成年人、孕妇和乳母
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="today-food">
+    <view class="today-food-top">
+      <text class="table-title">三餐详细</text>
+    </view>
+    <view class="today-food-middle table">
+      <view class="tr  meal-name">
+        <view class="td td-1">
+          <text>早餐</text>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">共计120kcal</text>
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td td-1">
+          <view>
+            <text>鸡蛋</text>
+          </view>
+          <view>
+            <text class="text-comment">100克</text>
+          </view>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">120kcal</text>
+        </view>
+      </view>
+      <view class="tr  meal-name">
+        <view class="td td-1">
+          <text>午餐</text>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">共计140kcal</text>
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td td-1">
+          <view>
+            <text>面条</text>
+          </view>
+          <view>
+            <text  class="text-comment">100克</text>
+          </view>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">140kcal</text>
+        </view>
+      </view>
+      <view class="tr  meal-name">
+        <view class="td td-1">
+          <text>晚餐</text>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">共计140kcal</text>
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td td-1">
+          <view>
+            <text>面条</text>
+          </view>
+          <view>
+            <text  class="text-comment">100克</text>
+          </view>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">140kcal</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class="today-calorie-total">
+    <view class="today-calorie-total-top">
+      <text class="table-title">今日摄入总热量</text>
+    </view>
+    <view class="today-calorie-total-middle table">
+      <view class="tr">
+        <view class="td td-1">
+          <view>
+            <image class="img-icon" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/热量.png"></image>
+            <text class="margin-left-xs">总热量</text>
+          </view>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">361Kcal</text>
+        </view>
+        <view class="td td-3">
+          <text>↓偏低</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="today-calorie-proportion">
+    <view class="today-calorie-proportion-top">
+      <text class="table-title">今日摄入热量占比</text>
+    </view>
+    <view class="today-calorie-proportion-middle table">
+      <view class="tr">
+        <view class="td td-1">
+          <view>
+            <image class="img-icon" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/早上.png"></image>
+            <text class="margin-left-xs">早餐</text>
+          </view>
+        </view>
+        <view class="td td-2">
+          <text  class="text-prompt">361</text>Kcal
+        </view>
+        <view class="td td-3">
+          <text>正常</text>
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td td-1">
+          <view>
+            <image class="img-icon" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/中午.png"></image>
+            <text class="margin-left-xs">午餐</text>
+          </view>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">361</text>Kcal
+        </view>
+        <view class="td td-3">
+          <text class="text-low">↓偏低</text>
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td td-1">
+          <view>
+            <image class="img-icon" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/晚上.png"></image>
+            <text class="margin-left-xs">晚餐</text>
+          </view>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">661</text>Kcal
+        </view>
+        <view class="td td-3">
+          <text class="text-waring">↑偏高</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="today-nutrient-proportion">
+    <view class="today-nutrient-proportion-top">
+      <text class="table-title">今日摄入营养素占比</text>
+    </view>
+    <view class="today-nutrient-proportion-middle table">
+      <view class="tr">
+        <view class="td td-1">
+          <view>
+            <image class="img-icon" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/煎蛋.png"></image>
+            <text class="margin-left-xs">蛋白质</text>
+          </view>
+          <view  class="text-comment">23克</view>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">44%</text>
+        </view>
+        <view class="td td-3">
+          <text>↓偏低</text>
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td td-1">
+          <view>
+            <image class="img-icon" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/米饭.png"></image>
+            <text class="margin-left-xs">碳水化合物</text>
+          </view>
+          <view  class="text-comment"></view>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">22%</text>
+        </view>
+        <view class="td td-3">
+          <text>↓偏低</text>
+        </view>
+      </view>
+      <view class="tr">
+        <view class="td td-1">
+          <view>
+            <image class="img-icon" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/薯条.png"></image>
+            <text class="margin-left-xs">脂肪</text>
+          </view>
+          <view class="text-comment">51克</view>
+        </view>
+        <view class="td td-2">
+          <text class="text-prompt">11%</text>
+        </view>
+        <view class="td td-3">
+          <text class="text-waring">↑偏高</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="share">
+  <button open-type="share">分享好友</button>
+  <button>生成图片</button>
+  </view>
+</view>

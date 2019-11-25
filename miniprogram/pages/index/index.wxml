@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<view class="background">
+  <view class="background-img"></view>
+</view>
+<view class="container">
+  <!-- 用户 openid -->
+  <view class="userinfo padding-sm">
+    <text class="text-title text-fontsize-sm">更新身体数据></text>
+    <image class="userinfo-avatar" bindtap="onGetOpenid" style="background-image: url({{avatarUrl}});"></image>
+  </view>
+  <view class="today-calories padding-sm">
+    <view class="grey-border-bottom margin-bottom-xs">
+      <text class="text-title text-fontsize-lg">今日热量</text>
+    </view>
+    <view>
+      <text>已摄入</text>
+      <view>
+        <text class="text-prompt">361</text>Kcal</view>
+    </view>
+    <view>
+      <text>还能吃</text>
+      <view>
+        <text class="text-prompt">361</text>Kcal</view>
+    </view>
+  </view>
+  <view class="search-box margin-top-md">
+    <image class="search-button img-icon" mode="widthFix" src="{{searchbuttonUrl}}"></image>
+    <input class="search-input" placeholder="请输入食物、运动名称查热量"></input>
+    <image class="voice-button" mode="widthFix" src="{{voicebuttonUrl}}"></image>
+  </view>
+
+  <view class="meals margin-top-lg">
+    <view class="meal" wx:for="{{meals}}" wx:for-item="meal" wx:key="name">
+      <view class="meal-info" data-index="{{index}}" bindtap="foodtoggle">
+        <image class="meal-img" mode="widthFix" src="{{meal.imgUrl}}"></image>
+        <view class="meal-name">
+          <text>{{meal.name}}</text>
+          <text class="text-comment">建议{{meal.suggest.min}}~{{meal.suggest.max}}Kcal</text>
+        </view>
+        <view>
+          <text class="text-prompt">{{meal.calories}}</text>Kcal</view>
+        <image mode="widthFix" class="add-img" data-index="{{index}}" data-meal-name="{{meal.name}}" catchtap="addFood" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/添加.png"></image>
+      </view>
+      <view class="food" hidden="{{meal.hidden}}" wx:for="{{meal.foods}}" wx:for-item="food" wx:key="name">
+        <view class="food-name">
+          <text>{{food.name}}</text>
+          <text class="text-comment">{{food.weight}}{{food.unit}}</text>
+        </view>
+        <view>
+          <text class="text-prompt">{{food.calories}}</text>Kcal
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="analysis margin-top-lg">
+    <button bindtap="viewAnalysis">查看饮食分析</button>
+  </view>
+</view>
