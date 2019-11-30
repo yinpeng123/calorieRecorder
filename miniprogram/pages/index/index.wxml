@@ -3,45 +3,41 @@
   <view class="background-img"></view>
 </view>
 <view class="container">
-  <!-- 用户 openid -->
-  <view class="userinfo padding-sm">
-    <text class="text-title text-fontsize-sm">更新身体数据></text>
-    <image class="userinfo-avatar" bindtap="onGetOpenid" style="background-image: url({{avatarUrl}});"></image>
-  </view>
-  <view class="today-calories padding-sm">
-    <view class="grey-border-bottom margin-bottom-xs">
+  <view class="today-calories padding-sm margin-top-lg">
+    <view class="margin-bottom-xs">
       <text class="text-title text-fontsize-lg">今日热量</text>
+      <button hidden="{{!logged}}" size="mini" hover-class="none" class="text-title text-fontsize-sm" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">更新身体数据> <image class="userinfo-avatar" style="background-image: url({{avatarUrl}});"></image>
+      </button>
     </view>
     <view>
       <text>已摄入</text>
       <view>
-        <text class="text-prompt">361</text>Kcal</view>
+        <text class="text-prompt">{{record.calories}}</text>Kcal</view>
     </view>
     <view>
       <text>还能吃</text>
       <view>
-        <text class="text-prompt">361</text>Kcal</view>
+        <text class="text-prompt {{sugCal-record.calories<=0 ?'text-waring':''}}">{{sugCal-record.calories}}</text>Kcal</view>
     </view>
   </view>
-  <view class="search-box margin-top-md">
-    <image class="search-button img-icon" mode="widthFix" src="{{searchbuttonUrl}}"></image>
-    <input class="search-input" placeholder="请输入食物、运动名称查热量"></input>
-    <image class="voice-button" mode="widthFix" src="{{voicebuttonUrl}}"></image>
+  <view class="searchbox margin-top-md" capture-catch:tap="tapsearchbox">
+    <searchbox></searchbox>
   </view>
 
+
   <view class="meals margin-top-lg">
-    <view class="meal" wx:for="{{meals}}" wx:for-item="meal" wx:key="name">
+    <view class="meal" wx:for="{{record.meals}}" wx:for-item="meal" wx:key="name">
       <view class="meal-info" data-index="{{index}}" bindtap="foodtoggle">
-        <image class="meal-img" mode="widthFix" src="{{meal.imgUrl}}"></image>
+        <image class="meal-img" mode="widthFix" src="{{imgUrls[meal.name]}}"></image>
         <view class="meal-name">
           <text>{{meal.name}}</text>
           <text class="text-comment">建议{{meal.suggest.min}}~{{meal.suggest.max}}Kcal</text>
         </view>
         <view>
           <text class="text-prompt">{{meal.calories}}</text>Kcal</view>
-        <image mode="widthFix" class="add-img" data-index="{{index}}" data-meal-name="{{meal.name}}" catchtap="addFood" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/添加.png"></image>
+        <image hidden="{{!logged}}" mode="widthFix" class="add-img" data-index="{{index}}" data-meal-name="{{meal.name}}" catchtap="addFood" data-type="{{meal.name}}" src="{{imgUrls['添加']}}"></image>
       </view>
-      <view class="food" hidden="{{meal.hidden}}" wx:for="{{meal.foods}}" wx:for-item="food" wx:key="name">
+      <view class="food" hidden="{{meal.hidden}}" wx:for="{{meal.foods}}" wx:for-index="foodIndex" wx:for-item="food" wx:key="name">
         <view class="food-name">
           <text>{{food.name}}</text>
           <text class="text-comment">{{food.weight}}{{food.unit}}</text>
@@ -49,10 +45,11 @@
         <view>
           <text class="text-prompt">{{food.calories}}</text>Kcal
         </view>
+        <image hidden="{{!logged}}" mode="widthFix" class="minus-img" data-food-index="{{foodIndex}}"  catchtap="minusFood" data-meal-index="{{index}}" src="{{imgUrls['减少']}}"></image>
       </view>
     </view>
   </view>
-  <view class="analysis margin-top-lg">
+  <view class="analysis margin-top-lg" hidden="{{!logged || !userData}}">
     <button bindtap="viewAnalysis">查看饮食分析</button>
   </view>
 </view>

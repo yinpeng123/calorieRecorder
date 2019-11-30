@@ -1,0 +1,59 @@
+/* miniprogram/pages/detail/detail.wxss */
+.top{
+  background: #ffe600;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: content-box !important;
+  padding: 0 55rpx;
+}
+.food-name{
+  font-size: 54rpx;
+}
+.food-calories{
+  font-size: 48rpx;
+}
+.nutrition-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: #fff;
+  border-radius: 10rpx;
+  box-shadow: 5rpx 5rpx 15rpx 1rpx #e5e5e5;
+  transition: all 3000ms ease;
+  margin:20rpx 0;
+}
+.nutrition{
+  width: 100%;
+  height: 100rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.nutrition~.nutrition{
+border-top: 1px solid #f0f0f0;
+}
+
+.text-comment{
+  color: #666;
+}
+
+.share{
+  position: absolute;
+  top: 100rpx;
+  right: 60rpx;
+  width: 200rpx !important;
+  height: 60rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  box-shadow: 3rpx 3rpx 30rpx 2rpx #e8e8e8;
+}

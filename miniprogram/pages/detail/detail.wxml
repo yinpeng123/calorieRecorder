@@ -1,0 +1,20 @@
+<!--miniprogram/pages/detail/detail.wxml-->
+<view class="container">
+<view class="share text-title"><button hover-class="none" open-type="share">分享</button></view>
+  <view class="top">
+    <view class="food-name text-title margin-top-sm">{{food.name}}</view>
+    <view class="food-calories text-title margin-top-sm">{{food.calories}}Kcal/{{food.weight}}{{food.unit}}</view>
+    <view class="comment text-comment margin-top-sm">{{food.comment}}</view>
+    <view class="comment text-comment margin-top-sm">注：{{food.type=='food' ?  '下表为100克可食用部分营养物质含量':'千步运动量时间表示消耗千步热量需要的时间'}}</view>
+  </view>
+  <view class="nutrition-list">
+    <view class="nutrition" wx:for="{{nutritionList}}" wx:for-item="nutrition">
+      <view class="nutrition-name">
+        <text>{{nutrition.name}}</text>
+      </view>
+      <view class="nutrition-value">
+        <text>{{nutrition.value}}{{nutrition.unit}}</text>
+      </view>
+    </view>
+  </view>
+</view>

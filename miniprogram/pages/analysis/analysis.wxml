@@ -1,12 +1,12 @@
 <!--miniprogram/pages/analysis/analysis.wxml-->
 <view class="container">
-  <view class="analysis-result">
+  <view class="analysis-result margin-top-sm">
     <view class="analysis-result-top">
       <!-- <image class="health-img" mode="scaleToFill" src="{{healthImg}}"></image> -->
       <text class="analysis-result-title">营养分析结果</text>
       <view class="calendar">
-        <image mode="widthFix" src="{{calendarImg}}" class="calendar-img"></image>
-        <text class="calendar-text text-title">27</text>
+        <image mode="scaleToFill" src="{{calendarImg}}" class="calendar-img"></image>
+        <text class="calendar-text text-title">{{date}}</text>
       </view>
     </view>
     <view class="analysis-result-middle table">
@@ -14,25 +14,25 @@
         <view class="td td-1 text-align-center">
           <text>总热量</text>
         </view>
-        <view class="td td-2">热量摄入严重不足
+        <view class="td td-2">热量摄入{{status[statu.calorieTotal]}}
         </view>
       </view>
       <view class="tr">
         <view class="td td-1 text-align-center">三餐热量比
         </view>
-        <view class="td td-2">午餐热量比偏高，晚餐热量比偏低，要合理分配三餐热量哦
+        <view class="td td-2">
+          <text wx:if="{{statu.breakfast}}">早餐热量比{{status[statu.breakfast]}},</text>
+          <text wx:if="{{statu.lunch}}">午餐热量比{{status[statu.lunch]}},</text>
+          <text wx:if="{{statu.dinner}}">晚餐热量比{{status[statu.dinner]}},</text>要合理分配三餐热量哦
         </view>
       </view>
       <view class="tr">
         <view class="td td-1 text-align-center">三大营养素占比
         </view>
-        <view class="td td-2">蛋白质占比偏高，脂肪、碳水化合物占比偏低、要合理搭配营养哦
-        </view>
-      </view>
-      <view class="tr">
-        <view class="td td-1 text-align-center">运动
-        </view>
-        <view class="td td-2">运动量过少，要合理安排运动时间哦
+        <view class="td td-2">
+        <text wx:if="{{statu.protein}}">蛋白质占比{{status[statu.protein]}},</text>
+          <text wx:if="{{statu.fat}}">脂肪占比{{status[statu.fat]}},</text>
+          <text wx:if="{{statu.carbo}}">碳水化合物占比{{status[statu.carbo]}},</text>要合理搭配营养哦
         </view>
       </view>
       <view class="tr">
@@ -51,20 +51,20 @@
           <text>早餐</text>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">共计120kcal</text>
+          <text class="text-prompt">共计{{record.meals[0].calories}}kcal</text>
         </view>
       </view>
-      <view class="tr">
+      <view class="tr" wx:for="{{record.meals[0].foods}}">
         <view class="td td-1">
           <view>
-            <text>鸡蛋</text>
+            <text>{{item.name}}</text>
           </view>
           <view>
-            <text class="text-comment">100克</text>
+            <text class="text-comment">{{item.weight}}克</text>
           </view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">120kcal</text>
+          <text class="text-prompt">{{item.calories}}kcal</text>
         </view>
       </view>
       <view class="tr  meal-name">
@@ -72,20 +72,20 @@
           <text>午餐</text>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">共计140kcal</text>
+          <text class="text-prompt">共计{{record.meals[1].calories}}kcal</text>
         </view>
       </view>
-      <view class="tr">
+      <view class="tr" wx:for="{{record.meals[1].foods}}">
         <view class="td td-1">
           <view>
-            <text>面条</text>
+            <text>{{item.name}}</text>
           </view>
           <view>
-            <text  class="text-comment">100克</text>
+            <text class="text-comment">{{item.weight}}克</text>
           </view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">140kcal</text>
+          <text class="text-prompt">{{item.calories}}kcal</text>
         </view>
       </view>
       <view class="tr  meal-name">
@@ -93,20 +93,20 @@
           <text>晚餐</text>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">共计140kcal</text>
+          <text class="text-prompt">共计{{record.meals[2].calories}}kcal</text>
         </view>
       </view>
-      <view class="tr">
+      <view class="tr" wx:for="{{record.meals[2].foods}}">
         <view class="td td-1">
           <view>
-            <text>面条</text>
+            <text>{{item.name}}</text>
           </view>
           <view>
-            <text  class="text-comment">100克</text>
+            <text class="text-comment">{{item.weight}}克</text>
           </view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">140kcal</text>
+          <text class="text-prompt">{{item.calories}}kcal</text>
         </view>
       </view>
     </view>
@@ -125,10 +125,10 @@
           </view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">361Kcal</text>
+          <text class="text-prompt">{{record.calories}}Kcal</text>
         </view>
         <view class="td td-3">
-          <text>↓偏低</text>
+          <text class="{{statusClass[statu.calorieTotal]}}">{{status[statu.calorieTotal]}}</text>
         </view>
       </view>
     </view>
@@ -146,10 +146,13 @@
           </view>
         </view>
         <view class="td td-2">
-          <text  class="text-prompt">361</text>Kcal
+          <view class="text-prompt">
+            <text>{{record.meals[0].calories}}</text>
+            <text>Kcal</text>
+          </view>
         </view>
         <view class="td td-3">
-          <text>正常</text>
+          <text class="{{statusClass[statu.breakfast]}}">{{status[statu.breakfast]}}</text>
         </view>
       </view>
       <view class="tr">
@@ -160,10 +163,14 @@
           </view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">361</text>Kcal
+          <view class="text-prompt">
+            <text>{{record.meals[1].calories}}</text>
+            <text>Kcal</text>
+          </view>
         </view>
         <view class="td td-3">
-          <text class="text-low">↓偏低</text>
+          <text class="{{statusClass[statu.lunch]}}">{{status[statu.lunch]}}</text>
+
         </view>
       </view>
       <view class="tr">
@@ -174,10 +181,14 @@
           </view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">661</text>Kcal
+          <view class="text-prompt">
+            <text>{{record.meals[2].calories}}</text>
+            <text>Kcal</text>
+          </view>
         </view>
         <view class="td td-3">
-          <text class="text-waring">↑偏高</text>
+          <text class="{{statusClass[statu.dinner]}}">{{status[statu.dinner]}}</text>
+
         </view>
       </view>
     </view>
@@ -193,13 +204,14 @@
             <image class="img-icon" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/煎蛋.png"></image>
             <text class="margin-left-xs">蛋白质</text>
           </view>
-          <view  class="text-comment">23克</view>
+          <view class="text-comment">{{record.protein}}克</view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">44%</text>
+          <text class="text-prompt">{{proteinCalProp}}%</text>
         </view>
         <view class="td td-3">
-          <text>↓偏低</text>
+          <text class="{{statusClass[statu.protein]}}">{{status[statu.protein]}}</text>
+
         </view>
       </view>
       <view class="tr">
@@ -208,13 +220,14 @@
             <image class="img-icon" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/米饭.png"></image>
             <text class="margin-left-xs">碳水化合物</text>
           </view>
-          <view  class="text-comment"></view>
+          <view class="text-comment">{{record.carbo}}克</view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">22%</text>
+          <text class="text-prompt">{{carboCalProp}}%</text>
         </view>
         <view class="td td-3">
-          <text>↓偏低</text>
+          <text class="{{statusClass[statu.carbo]}}">{{status[statu.protein]}}</text>
+
         </view>
       </view>
       <view class="tr">
@@ -223,19 +236,19 @@
             <image class="img-icon" src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/薯条.png"></image>
             <text class="margin-left-xs">脂肪</text>
           </view>
-          <view class="text-comment">51克</view>
+          <view class="text-comment">{{record.fat}}克</view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">11%</text>
+          <text class="text-prompt">{{fatCalProp}}%</text>
         </view>
         <view class="td td-3">
-          <text class="text-waring">↑偏高</text>
+          <text class="{{statusClass[statu.fat]}}">{{status[statu.fat]}}</text>
         </view>
       </view>
     </view>
   </view>
   <view class="share">
-  <button open-type="share">分享好友</button>
-  <button>生成图片</button>
+    <button open-type="share">分享好友</button>
+    <button>生成图片</button>
   </view>
 </view>

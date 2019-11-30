@@ -1,0 +1,35 @@
+/* components/setweight/setweight.wxss */
+
+.setweight-box {
+  display: flex;
+  height: 400rpx;
+  flex-direction: column;
+  border-radius: 20rpx;
+}
+
+.setweight-box>view {
+  width: 100%;
+  height: 100rpx;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+}
+
+view.top {
+  background: #ffe600;
+}
+
+.unit-unit {
+  background: #ffd900;
+  border-radius: 10rpx;
+  padding: 0 10rpx;
+}
+
+
+.weight input{
+  width: 80rpx;
+}

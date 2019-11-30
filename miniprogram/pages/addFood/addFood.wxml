@@ -1,3 +1,34 @@
 <!--miniprogram/pages/addFood.wxml-->
-<text>ddd</text>
-<text>miniprogram/pages/addFood.wxml</text>
+<view class="container">
+  <view class="searchbox-view">
+    <searchbox bindinput="inputhandle" bindsearch="inputhandle" focus="true"></searchbox>
+  </view>
+  <view  class="result-list">
+    <view class="food" wx:for="{{result}}" data-food="{{food}}" wx:for-item="food" wx:key="name" bindtap="tapfoodhandle">
+      <view class="food-name">
+        <text>{{food.name}}</text>
+        <text class="text-comment">{{food.weight}}{{food.unit}}</text>
+      </view>
+      <view>
+        <text class="text-prompt">{{food.calories}}</text>Kcal
+      </view>
+    </view>
+  </view>
+  <view hidden="{{hasResult}}" class="history">
+    <view class="history-recorder">
+      <text class="text-minor">历史记录</text>
+      <view class="clear text-comment" bindtap="clearhandle">
+        <image class="clear-img img-icon" mode="widthFix" src="{{clearImgUrl}}"></image>
+        <text>清空</text>
+      </view>
+    </view>
+    <view class="history-items">
+      <view wx:for="{{histories}}" class="history-item" wx:key="text" data-item="{{item}}" bindtap="historytaphandle">
+        <text class="history-item-text">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="setweight"  animation="{{animationData}}">
+  <setweight food="{{food}}" type="{{type}}" bindcancel="cancelhandle" bindok="okhandle"></setweight>
+  </view>
+</view>

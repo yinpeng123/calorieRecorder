@@ -1,12 +1,5 @@
 /* miniprogram/pages/analysis/analysis.wxss */
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20rpx;
-}
-
 .analysis-result, .today-food, .today-calorie-total, .today-calorie-proportion,
 .today-nutrient-proportion {
   width: 100%;
@@ -106,7 +99,7 @@
 
 .analysis-result-middle .td-1 {
   width: 25%;
-  background: #FFFF99;
+  background: #ffc20e;
   align-items: center;
 }
 
@@ -138,14 +131,26 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  color:#CC6600;
-  background: #FFFFCC;
+  color:#4e3131;
+  background: #faf4de;
 }
 
 .share button{
-  background: linear-gradient(to right, #FFFF00, #FF9900);
+  background: linear-gradient(to right,  #fe0, #fa0);
   border-radius: 50rpx;
   width: 40%;
-  color: white;
   font-weight: 500;
+}
+
+.img-icon{
+width: 50rpx;
+height:50rpx;
+}
+
+.text-low::before{
+  content: '↓'
+}
+
+.text-waring::before{
+  content: '↑'
 }

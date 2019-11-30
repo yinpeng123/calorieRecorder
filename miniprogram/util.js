@@ -1,4 +1,4 @@
-export function getImageInfo(url) {
+function getImageInfo(url) {
   return new Promise((resolve, reject) => {
     wx.getImageInfo({
       src: url,
@@ -7,3 +7,10 @@ export function getImageInfo(url) {
     })
   })
 }
+
+function rpx2px(rpx){
+return rpx*wx.getSystemInfoSync().windowWidth/750
+}
+
+exports.rpx2px=rpx2px
+

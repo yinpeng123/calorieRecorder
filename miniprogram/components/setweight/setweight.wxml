@@ -1,0 +1,25 @@
+<!--components/setweight/setweight.wxml-->
+<view class="setweight-box">
+  <view class="top">
+    <view bindtap="cancelhandle">取消</view>
+    <view>{{date}} {{mealType}}</view>
+    <view bindtap="okhandle">确定</view>
+  </view>
+  <view class="food">
+    <view class="food-name">
+      <text>{{food.name}}</text>
+      <text class="text-comment">{{weight}}{{food.unit}}</text>
+    </view>
+    <view>
+      <text class="text-prompt">{{calories}}</text>Kcal
+    </view>
+  </view>
+  <view class="unit">
+    <view>单位</view>
+    <view class="unit-unit">{{food.unit}}</view>
+  </view>
+  <view class="weight">
+  <view>数量</view>
+  <input type="number" maxlength="4" value="{{weight}}" bindinput="inputhandle"></input>
+  </view>
+</view>

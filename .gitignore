@@ -1,0 +1,4 @@
+/cloudfunctions/addUser/node_modules
+/cloudfunctions/login/node_modules
+/cloudfunctions/query/node_modules
+/cloudfunctions/queryfoods/node_modules

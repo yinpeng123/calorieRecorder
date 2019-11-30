@@ -1,5 +1,4 @@
 // components/share.js
-import { getImageInfo} from '../util.js'
 Component({
   /**
    * 组件的属性列表
@@ -28,7 +27,6 @@ userInfo:{
     draw() {
 const {userInfo} = this.data;
 const {avatarUrl, nickName } =userInfo;
-      const avatarPromise = getImageInfo(avatarUrl);
     }
   }
 })

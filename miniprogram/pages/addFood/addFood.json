@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "searchbox":"/components/searchbox/searchbox",
+    "setweight": "/components/setweight/setweight"
+  }
 }

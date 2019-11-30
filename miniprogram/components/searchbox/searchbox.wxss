@@ -1,0 +1,25 @@
+/* components/searchbox/searchbox.wxss */
+
+.search-box {
+  padding: 0 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 80rpx;
+  background: #fff;
+  border: 2rpx solid #4e3131;
+  border-radius: 10rpx;
+}
+
+.search-box .search-button, .search-box .voice-button {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+
+.search-box .search-input {
+  padding: 0 20rpx;
+  height: 80rpx;
+  flex-grow: 1;
+}

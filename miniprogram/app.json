@@ -1,14 +1,16 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/user/user",
+    "pages/addFood/addFood",
     "pages/analysis/analysis",
-    "pages/addFood/addFood"
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FFBB12",
-    "navigationBarTitleText": "卡路里计算器",
+    "navigationBarBackgroundColor": "#ffe600",
+    "navigationBarTitleText": "卡路里记录本",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",

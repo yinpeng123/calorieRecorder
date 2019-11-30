@@ -1,22 +1,23 @@
 /**app.wxss**/
 
 page {
-  background: #FFFFCC;
+  background: #faf4de;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
 .container {
-  padding: 40rpx;
+  padding: 0 35rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
   line-height: 1.5;
+  box-sizing: border-box;
 } 
 
 .container>view{
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -33,14 +34,17 @@ button::after{
 }
 
 .img-icon {
-  width: 1.5em;
-  height: 1.5em;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .text-comment{
-  color: #999999;
+  color:#bfbfbf;
   font-size: 0.8em;
+}
+
+.text-minor{
+  font-size: 0.8em;
+  color: #666;
 }
 
 .text-prompt {
@@ -54,11 +58,15 @@ button::after{
 
 .text-title {
   font-weight: bold;
-  color: #CC6600;
+  color: #521a01;
 }
 
 .text-low {
   color: #009933;
+}
+
+.text-bold{
+  font-weight: bold;
 }
 
 .grey-border-bottom{
@@ -66,32 +74,32 @@ button::after{
 }
 
 .margin-bottom-xs{
-  margin-bottom: 10rpx;
+  margin-bottom: 14rpx;
 }
 
 .margin-bottom-sm{
-  margin-bottom: 15rpx;
+  margin-bottom: 20rpx;
 }
 .margin-bottom-md{
-  margin-bottom: 20rpx;
+  margin-bottom: 28rpx;
 }
 
 .margin-bottom-lg{
-  margin-bottom: 30rpx;
+  margin-bottom: 36rpx;
 }
 .margin-top-xs{
-  margin-top: 10rpx;
+  margin-top: 14rpx;
 }
 
 .margin-top-sm{
-  margin-top: 15rpx;
+  margin-top: 20rpx;
 }
 .margin-top-md{
-  margin-top: 20rpx;
+  margin-top: 28rpx;
 }
 
 .margin-top-lg{
-  margin-top: 30rpx;
+  margin-top: 36rpx;
 }
 
 .margin-left-xs{
@@ -145,3 +153,4 @@ button::after{
 .padding-lg{
   padding:40rpx;
 }
+

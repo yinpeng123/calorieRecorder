@@ -1,0 +1,59 @@
+<!--miniprogram/pages/user/user.wxml-->
+<view class="background">
+  <view class="background-img"></view>
+</view>
+<view class="container">
+  <view class="view-history">
+    <button size="mini" hover-class="none" class="text-title text-fontsize-sm">查看历史分析</button>
+  </view>
+  <view class="userinfo padding-sm margin-top-md">
+
+    <image class="userinfo-avatar" style="background-image: url({{avatarUrl}});"></image>
+    <text class="nickName margin-top-sm">{{userInfo.nickName}}</text>
+  </view>
+  <view class="options margin-top-lg">
+    <view class="sex">
+      <view class="text-bold">性别</view>
+      <view>
+        <text data-sex="男" class="sex-seletor {{option.sex==='男'?'checked':''}}" bindtap="chosesex">男</text>
+        <text data-sex="女" class="sex-seletor {{option.sex==='女'?'checked':''}}" bindtap="chosesex">女</text>
+      </view>
+    </view>
+    <view class="weight">
+      <view class="text-bold">体重</view>
+      <view>
+        <input value="{{option.weight}}" bindblur="weightChangeHandle" type="number" maxlength="3"></input>kg</view>
+    </view>
+    <view class="height">
+      <view class="text-bold" maxlength="3">身高</view>
+      <view>
+        <input value="{{option.height}}" bindblur="heightChangeHandle" type="number" maxlength="3"></input>cm</view>
+    </view>
+    <view class="birthday">
+      <view class="text-bold">生日</view>
+      <view>
+        <picker mode="date" value="{{option.birthdate}}" start="1949-10-01" end="{{currentDate}}" bindchange="bindDateChange">
+          <view class="picker">{{option.birthdate}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="exercise">
+      <view class="text-bold">运动习惯</view>
+      <view>
+        <picker mode="selector" range="{{exercises}}" value="{{option.exercise}}" bindchange="bindExerciseChange">
+          <view class="exercise-picker">{{exercises[option.exercise]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="body-fat">
+      <view class="text-bold">体脂</view>
+      <view>
+        <input value="{{option.bodyfat}}" bindblur="fatChangeHandle" type="number" maxlength="2"></input>%</view>
+    </view>
+  </view>
+  <view class="ok margin-top-lg">
+    <button class="okbutton" bindtap="okhandle">确认修改</button>
+  </view>
+</view>
