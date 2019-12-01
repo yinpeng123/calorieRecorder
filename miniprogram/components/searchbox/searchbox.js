@@ -3,6 +3,9 @@ Component({
   /**
    * 组件的属性列表
    */
+  options: {
+    "addGlobalClass": true
+  },
   properties: {
     placeholder: {
       type: String,
@@ -18,8 +21,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    searchbuttonUrl: 'cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/搜索.png',
-    voicebuttonUrl: 'cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/录音.png',
+    
   },
 
   /**

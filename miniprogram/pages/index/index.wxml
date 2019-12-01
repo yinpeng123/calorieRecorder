@@ -6,7 +6,8 @@
   <view class="today-calories padding-sm margin-top-lg">
     <view class="margin-bottom-xs">
       <text class="text-title text-fontsize-lg">今日热量</text>
-      <button hidden="{{!logged}}" size="mini" hover-class="none" class="text-title text-fontsize-sm" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">更新身体数据> <image class="userinfo-avatar" style="background-image: url({{avatarUrl}});"></image>
+      <button hidden="{{!logged}}" size="mini" hover-class="none" class="text-title text-fontsize-sm" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">更新身体数据>
+        <image class="userinfo-avatar" style="background-image: url({{avatarUrl}});"></image>
       </button>
     </view>
     <view>
@@ -28,14 +29,15 @@
   <view class="meals margin-top-lg">
     <view class="meal" wx:for="{{record.meals}}" wx:for-item="meal" wx:key="name">
       <view class="meal-info" data-index="{{index}}" bindtap="foodtoggle">
-        <image class="meal-img" mode="widthFix" src="{{imgUrls[meal.name]}}"></image>
+        <text class="meal-img iconfont icon-taiyang  {{imgClass[meal.name]}}"></text>
         <view class="meal-name">
           <text>{{meal.name}}</text>
           <text class="text-comment">建议{{meal.suggest.min}}~{{meal.suggest.max}}Kcal</text>
         </view>
         <view>
           <text class="text-prompt">{{meal.calories}}</text>Kcal</view>
-        <image hidden="{{!logged}}" mode="widthFix" class="add-img" data-index="{{index}}" data-meal-name="{{meal.name}}" catchtap="addFood" data-type="{{meal.name}}" src="{{imgUrls['添加']}}"></image>
+        <text class="add-img iconfont {{imgClass['添加']}}" hidden="{{!logged}}" data-index="{{index}}" data-meal-name="{{meal.name}}" catchtap="addFood" data-type="{{meal.name}}"></text>
+
       </view>
       <view class="food" hidden="{{meal.hidden}}" wx:for="{{meal.foods}}" wx:for-index="foodIndex" wx:for-item="food" wx:key="name">
         <view class="food-name">
@@ -45,7 +47,7 @@
         <view>
           <text class="text-prompt">{{food.calories}}</text>Kcal
         </view>
-        <image hidden="{{!logged}}" mode="widthFix" class="minus-img" data-food-index="{{foodIndex}}"  catchtap="minusFood" data-meal-index="{{index}}" src="{{imgUrls['减少']}}"></image>
+        <text hidden="{{!logged}}" data-food-index="{{foodIndex}}" catchtap="minusFood" data-meal-index="{{index}}" class="minus-img iconfont {{imgClass['减少']}}" data-meal-name="{{meal.name}}" data-type="{{meal.name}}"></text>
       </view>
     </view>
   </view>

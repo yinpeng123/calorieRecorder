@@ -12,12 +12,12 @@ Page({
     takeSession: false,
     hasRecord: false,
     requestResult: '',
-    imgUrls: {
-      "早餐": "cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/早上.png",
-      "午餐": "cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/中午.png",
-      "晚餐": "cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/晚上.png",
-      "添加": "cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/添加.png",
-      "减少": "cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/减少.png"
+    imgClass: {
+      "早餐": "icon-zaoshang",
+      "午餐": "icon-taiyang",
+      "晚餐": "icon-qingtian-wanshang",
+      "添加": "icon-add1",
+      "减少": "icon-chuyidong"
     },
     record: {
       calories: 0,
@@ -71,10 +71,23 @@ Page({
     })
   },
   onShow() {
-    var currentDate = new Date().toLocaleDateString().slice(0, 10).replace(/\//g, '-')
+    var currentDate = this.getCurrntDate()
     if (currentDate != this.data.record.date) {
       this.getTodayRecords(currentDate)
     }
+  },
+  getCurrntDate() {
+    var currntDate = new Date()
+    var year = currntDate.getFullYear()
+    var month = currntDate.getMonth() + 1
+    var date = currntDate.getDate()
+    if (month < 10) {
+      month = '0' + month;
+    }
+    if (date < 10) {
+      date = '0' + date;
+    }
+    return year + '-' + month + '-' + date
   },
 
   setUserInfo(userInfo) {
@@ -107,6 +120,10 @@ Page({
   },
 
   getOpenid: function() {
+    wx.showLoading({
+      title: '登录中',
+      mask: true
+    })
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
@@ -118,9 +135,8 @@ Page({
         this.setData({
           'record.openid': app.globalData.openid
         })
-        var date = new Date().toLocaleDateString().slice(0, 10).replace(/\//g, '-')
+        var date = this.getCurrntDate()
         this.getTodayRecords(date)
-        this.calculate()
       },
       fail: err => {
         wx.showToast({
@@ -164,11 +180,11 @@ Page({
           if (!sign) {
             foods = foods.concat(data)
           }
-          that.data.record.meals[index].calories += data.calories
-          that.data.record.calories += data.calories
-          that.data.record.carbo += data.carbo
-          that.data.record.fat += data.fat
-          that.data.record.protein += data.protein
+          that.data.record.meals[index].calories = that.parseFloat(that.data.record.meals[index].calories + data.calories)
+          that.data.record.calories = that.parseFloat(that.data.record.calories + data.calories)
+          that.data.record.fat = that.parseFloat(that.data.record.fat += data.fat)
+          that.data.record.carbo = that.parseFloat(that.data.record.carbo += data.carbo)
+          that.data.record.protein = that.parseFloat(that.data.record.protein += data.protein)
           that.setData({
             ['record.meals[' + index + '].foods']: foods,
             ['record.meals[' + index + '].calories']: that.data.record.meals[index].calories,
@@ -182,41 +198,42 @@ Page({
       }
     })
   },
+  parseFloat(n) {
+    return Math.round(n * 10) / 10
+  },
   minusFood(e) {
     var mealindex = e.currentTarget.dataset.mealIndex
     var foodindex = e.currentTarget.dataset.foodIndex
     var food = this.data.record.meals[mealindex].foods[foodindex]
-    this.data.record.meals[mealindex].calories -= food.calories
-    this.data.record.calories -= food.calories
-    this.data.record.carbo += food.carbo
-    this.data.record.fat += food.fat
-    this.data.record.protein += food.protein
+    this.data.record.meals[mealindex].calories = this.parseFloat(this.data.record.meals[mealindex].calories - food.calories)
+    this.data.record.calories = this.parseFloat(this.data.record.calories - food.calories)
+    this.data.record.carbo = this.parseFloat(this.data.record.carbo - food.carbo)
+    this.data.record.fat = this.parseFloat(this.data.record.fat - food.fat)
+    this.data.record.protein = this.parseFloat(this.data.record.protein - food.protein)
     this.data.record.meals[mealindex].foods.splice(foodindex, 1)
-    this.setData({
-      ['record.meals[' + mealindex + '].foods']: this.data.record.meals[mealindex].foods,
-      ['record.meals[' + mealindex + '].calories']: this.data.record.meals[mealindex].calories,
-      'record.calories': this.data.record.calories,
-      'record.carbo': this.data.record.carbo,
-      'record.fat': this.data.record.fat,
-      'record.protein': this.data.record.protein
-    })
     if (this.data.record.calories == 0) {
-      this.removeRecord()
+      this.removeRecord(mealindex)
     } else {
       this.updateRecord(mealindex)
     }
   },
-  removeRecord() {
+  removeRecord(index) {
     wx.cloud.callFunction({
       name: 'remove',
       data: {
-        target: '',
+        target: 'records',
         _id: this.data.record._id
       },
       success: res => {
-        if (res.result && res.result._id) {
+        if (res.result && res.result.stats.removed) {
           this.setData({
-            'record._id': ''
+            'hasRecord': false,
+            ['record.meals[' + index + '].foods']: [],
+            ['record.meals[' + index + '].calories']: 0,
+            'record.calories': 0,
+            'record.carbo': 0,
+            'record.fat': 0,
+            'record.protein': 0
           })
           console.log('删除记录成功')
         }
@@ -261,6 +278,18 @@ Page({
         success: res => {
           if (res.result && res.result.stats.updated) {
             console.log('更新记录成功')
+            this.setData({
+              ['record.meals[' + index + '].foods']: this.data.record.meals[index].foods,
+              ['record.meals[' + index + '].calories']: this.data.record.meals[index].calories,
+              'record.calories': this.data.record.calories,
+              'record.carbo': this.data.record.carbo,
+              'record.fat': this.data.record.fat,
+              'record.protein': this.data.record.protein
+            })
+            wx.showToast({
+              title: '修改记录成功',
+              icon: 'none'
+            })
           }
         },
         fail: e => {
@@ -299,9 +328,7 @@ Page({
         console.error(err)
       },
       complete: () => {
-        this.setData({
-          logged: app.globalData.logged,
-        })
+        this.calculate()
       }
     })
   },
@@ -359,6 +386,12 @@ Page({
       },
       fail(err) {
         console.error(err)
+      },
+      complete: () => {
+        this.setData({
+          logged: app.globalData.logged,
+        })
+        wx.hideLoading()
       }
     })
 

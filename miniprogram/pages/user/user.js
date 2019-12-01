@@ -97,9 +97,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var currentTime = new Date();
     this.setData({
-      currentDate: currentTime.toLocaleDateString().replace(/\//g, '-')
+      currentDate: new Date().toLocaleDateString().replace(/\//g, '-')
     })
   },
 

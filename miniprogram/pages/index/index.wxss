@@ -83,13 +83,13 @@
 }
 
 .meal-img, .add-img {
-  width: 60rpx;
-  height: 60rpx;
+  /* width: 60rpx;
+  height: 60rpx; */
   padding: 0 20rpx;
 }
 .minus-img{
-  width: 45rpx;
-  height: 45rpx;
+  /* width: 45rpx;
+  height: 45rpx; */
   padding: 0 8rpx 0 27rpx;
 }
 
@@ -113,6 +113,9 @@
 
 .meal-info~.food {
   border-top: 1px solid #e5e5e5;
+}
+.food>view{
+  flex-grow: 1;
 }
 
 .food {

@@ -1,6 +1,6 @@
 <!--components/searchbox/searchbox.wxml-->
 <view class="search-box">
-    <image class="search-button" mode="widthFix" src="{{searchbuttonUrl}}"></image>
+    <text class="iconfont icon-fangdajing"></text>
     <input class="search-input" placeholder="{{placeholder}}" confirm-type="search" bindinput="inputhandle" bindconfirm="confirmhandle" focus="{{focus}}" cursor="0" maxlength="20"></input>
-    <image class="voice-button" mode="widthFix" src="{{voicebuttonUrl}}"></image>
+    <text class="iconfont icon-yuyin"></text>
 </view>
