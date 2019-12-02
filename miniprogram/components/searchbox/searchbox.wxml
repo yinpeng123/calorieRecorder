@@ -1,6 +1,6 @@
 <!--components/searchbox/searchbox.wxml-->
 <view class="search-box">
-    <text class="iconfont icon-fangdajing"></text>
-    <input class="search-input" placeholder="{{placeholder}}" confirm-type="search" bindinput="inputhandle" bindconfirm="confirmhandle" focus="{{focus}}" cursor="0" maxlength="20"></input>
-    <text class="iconfont icon-yuyin"></text>
+  <text class="iconfont icon-fangdajing"></text>
+  <input class="search-input" placeholder="{{placeholder}}" value="{{value}}" confirm-type="search" bindinput="inputhandle" bindconfirm="confirmhandle" focus="{{focus}}" cursor="{{cursor}}" maxlength="20"></input>
+  <text class="iconfont icon-yuyin"></text>
 </view>

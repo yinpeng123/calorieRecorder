@@ -1,5 +1,9 @@
 // miniprogram/pages/addFood.js
 const util = require('../../util.js')
+
+var plugin = requirePlugin("WechatSI")
+let manager = plugin.getRecordRecognitionManager()
+
 const app = getApp()
 Component({
   properties: {
@@ -15,7 +19,11 @@ Component({
     histories: [],
     clearImgUrl: 'cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/清空.png',
     result: [],
-    animationData: {}
+    animationData: {},
+    inputValue: '',
+    text: '按住录入语音',
+    focus: true,
+    cursor: 0
   },
 
 
@@ -24,6 +32,29 @@ Component({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+      manager.onRecognize = function(res) {
+        console.log("current result", res.result)
+      }
+      manager.onStop = res => {
+        var result = res.result.slice(0, -1).split(',').join('')
+        this.setData({
+          inputValue: result,
+          focus: true,
+          cursor: result.length
+        })
+        console.log(this.data.inputValue)
+      }
+      manager.onStart = function(res) {
+        console.log("成功开始录音识别", res)
+      }
+      manager.onError = function(res) {
+        console.error("error msg", res.msg)
+        wx.showToast({
+          title: '时间太短',
+          icon: 'none'
+        })
+      }
+
       var type = this.data.type
       if (type === '早餐' || type === '午餐' || type === '晚餐') {
         type = 'food'
@@ -64,9 +95,7 @@ Component({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
-
-    },
+    onShow: function() {},
 
     /**
      * 生命周期函数--监听页面隐藏
@@ -306,6 +335,21 @@ Component({
         }
       }).catch(e => {
         console.error(e)
+      })
+    },
+    start() {
+      manager.start({
+        duration: 5000,
+        lang: "zh_CN"
+      })
+      this.setData({
+        text: '手指放开识别'
+      })
+    },
+    end() {
+      manager.stop()
+      this.setData({
+        text: '按住录入语音'
       })
     }
   },

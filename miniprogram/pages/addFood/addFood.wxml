@@ -1,7 +1,7 @@
 <!--miniprogram/pages/addFood.wxml-->
 <view class="container">
   <view class="searchbox-view">
-    <searchbox bindinput="inputhandle" bindsearch="inputhandle" focus="true"></searchbox>
+    <searchbox value="{{inputValue}}" bindinput="inputhandle" bindsearch="inputhandle" focus="{{focus}}" cursor="{{cursor}}"></searchbox>
   </view>
   <view  class="result-list">
     <view class="food" wx:for="{{result}}" data-food="{{food}}" wx:for-item="food" wx:key="name" bindtap="tapfoodhandle">
@@ -18,8 +18,7 @@
     <view class="history-recorder">
       <text class="text-minor">历史记录</text>
       <view class="clear text-comment" bindtap="clearhandle">
-        <image class="clear-img img-icon" mode="widthFix" src="{{clearImgUrl}}"></image>
-        <text>清空</text>
+        <text class="iconfont icon-refresh">清空</text>
       </view>
     </view>
     <view class="history-items">
@@ -31,4 +30,5 @@
   <view class="setweight"  animation="{{animationData}}">
   <setweight food="{{food}}" type="{{type}}" bindcancel="cancelhandle" bindok="okhandle"></setweight>
   </view>
+  <view class="voice" bindtouchstart="start" bindtouchend="end"><image src="cloud://calorie-um1jm.6361-calorie-um1jm-1300723881/录音.png"></image><text class="text-comment">{{text}}</text></view>
 </view>

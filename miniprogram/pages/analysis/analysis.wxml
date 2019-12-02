@@ -207,7 +207,7 @@
           <view class="text-comment">{{record.protein}}克</view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">{{proteinCalProp}}%</text>
+          <text class="text-prompt">{{proteinCalProp == null? 0 :proteinCalProp}}%</text>
         </view>
         <view class="td td-3">
           <text class="{{statusClass[statu.protein]}}">{{status[statu.protein]}}</text>
@@ -223,7 +223,7 @@
           <view class="text-comment">{{record.carbo}}克</view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">{{carboCalProp}}%</text>
+          <text class="text-prompt">{{carboCalProp == null? 0 :carboCalProp}}%</text>
         </view>
         <view class="td td-3">
           <text class="{{statusClass[statu.carbo]}}">{{status[statu.protein]}}</text>
@@ -239,7 +239,7 @@
           <view class="text-comment">{{record.fat}}克</view>
         </view>
         <view class="td td-2">
-          <text class="text-prompt">{{fatCalProp}}%</text>
+          <text class="text-prompt">{{fatCalProp == null? 0 :fatCalProp}}%</text>
         </view>
         <view class="td td-3">
           <text class="{{statusClass[statu.fat]}}">{{status[statu.fat]}}</text>

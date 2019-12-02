@@ -14,6 +14,14 @@ Component({
     focus:{
       type:Boolean,
       value:false
+    },
+    cursor: {
+      type: Number,
+      value: 0
+    },
+    value: {
+      type: String,
+      value: ''
     }
   },
 
@@ -34,7 +42,7 @@ Component({
       })
     },
     confirmhandle:function(e){
-      this.triggerEvent('saerch', {
+      this.triggerEvent('search', {
         value: e.detail.value
       })
     }
